@@ -1,0 +1,25 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WinJS Hub sample - Semantic zoom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/css/ui-dark.css" rel="stylesheet" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/base.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/ui.js"></script>
+    <script src="navigator.js"></script>
+    <script>
+        WinJS.Utilities.ready(function () {
+            WinJS.UI.processAll().then(function () {
+                WinJS.Navigation.navigate(Application.navigator.home);
+            });
+        });
+    </script>
+</head>
+<body class="win-type-body">
+    <div data-win-control="Application.PageControlNavigator" data-win-options="{ home: '/pages/sezo/sezo.html' }"></div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WinJS Hub sample - Orientations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/css/ui-dark.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/ui.js"></script>
+    <script>
+        WinJS.Namespace.define('Sample', {
+            songs: new WinJS.Binding.List([
+                { index: '1', album: 'Album 1', length: '4:33', song: 'Song 1' },
+                { index: '2', album: 'Album 2', length: '3:54', song: 'Song 2' },
+                { index: '3', album: 'Album 3', length: '5:14', song: 'Song 3' },
+                { index: '4', album: 'Album 4', length: '4:51', song: 'Song 4' },
+                { index: '5', album: 'Album 5', length: '3:47', song: 'Song 5' },
+                { index: '6', album: 'Album 6', length: '3:25', song: 'Song 6' },
+                { index: '7', album: 'Album 7', length: '5:01', song: 'Song 7' },
+                { index: '8', album: 'Album 8', length: '3:36', song: 'Song 8' },
+                { index: '9', album: 'Album 9', length: '3:52', song: 'Song 9' },
+                { index: '10', album: 'Album 10', length: '2:56', song: 'Song 10' }
+            ]),
+            albums: new WinJS.Binding.List([
+                { title: 'Album 1' },
+                { title: 'Album 2' },
+                { title: 'Album 3' },
+                { title: 'Album 4' },
+                { title: 'Album 5' },
+                { title: 'Album 6' },
+                { title: 'Album 7' },
+                { title: 'Album 8' },
+                { title: 'Album 9' },
+                { title: 'Album 10' }
+            ])
+        });
+
+        function init() {
+            WinJS.UI.processAll().then(function() {
+                var toggle = document.querySelector('#toggleOrientationButton');
+                toggle.addEventListener('click', function () {
+                    // Toggle orientation
+                    var hub = document.querySelector('#hub');
+                    WinJS.Utilities.removeClass(hub, hub.winControl.orientation);
+                    hub.winControl.orientation = (hub.winControl.orientation == 'vertical') ? 'horizontal' : 'vertical';
+                    WinJS.Utilities.addClass(hub, hub.winControl.orientation);
+
+                    // Force re-layout of ListView for new viewport size
+                    var listView = document.querySelector('#listView');
+                    listView.winControl.forceLayout();
+                });
+            });
+        }
+
+        WinJS.Utilities.ready(init);
+    </script>
+    <style type="text/css">
+        #hub {
+            min-width: 320px;
+            height: calc(100% - 32px);
+        }
+
+        #hub .win-hub-surface {
+            padding: 12px;
+        }
+
+        .songs {
+            min-width: 300px;
+        }
+
+        .songRow {
+            border-bottom: 1px solid #333;
+            padding: 5px 0;
+        }
+
+        .songRow > div {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .songRow:not(.headerRow):hover {
+            background-color: #222;
+        }
+
+        .songRow .play {
+            width: 10%;
+            text-align: center;
+            color: #666;
+        }
+
+        .songRow .song {
+            width: 30%;
+        }
+
+        .songRow .albumName {
+            width: 30%;
+        }
+
+        .songRow .length {
+            width: 15%;
+        }
+
+        .songRow.headerRow {
+            font-family: 'Segoe UI Light';
+        }
+
+        #listView {
+            min-width: 300px;
+        }
+
+        #hub.horizontal #listView {
+            width: 500px;
+        }
+
+        #hub.vertical #listView {
+            height: auto;
+        }
+
+        .album {
+            padding: 5px;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .album .image {
+            font-size: 48px;
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .reviews .average .totalRatings {
+            font-size: 24px;
+            color: #666;
+        }
+
+        .reviews .breakdown {
+            margin-top: 20px;
+        }
+
+        .reviews .breakdown .star .numStars {
+            width: 45px;
+            display: inline-block;
+        }
+
+        .reviews .breakdown .star progress {
+            height: 15px;
+        }
+
+        .reviews .breakdown .star .percent {
+            display: inline-block;
+        }
+
+        .reviews {
+            min-width: 320px;
+        }
+
+        .reviews .comment {
+            margin: 20px 0;
+        }
+
+        .reviews .comment textarea {
+            width: 100%;
+            max-width: 720px;
+            height: 100px;
+        }
+
+        .win-hub-horizontal .win-hub-section-header {
+            margin-top: 0;
+        }
+
+        .win-rating .win-star.win-average.win-full.win-disabled {
+            color: #FFF;
+        }
+    </style>
+</head>
+<body class="win-type-body">
+    <button class="win-button" id="toggleOrientationButton">Toggle orientation</button>
+    <div id="hub" class="vertical" data-win-control="WinJS.UI.Hub" data-win-options="{orientation: 'vertical'}">
+        <div class="songs" data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Songs', isHeaderStatic: true}">
+            <div class="songRow headerRow">
+                <div class="play"></div>
+                <div class="song">song</div>
+                <div class="albumName">album</div>
+                <div class="length">length</div>
+            </div>
+            <div data-win-control="WinJS.UI.Repeater" data-win-options="{data: Sample.songs}">
+                <div class="songRow">
+                    <div class="play" data-win-bind="textContent: index"></div>
+                    <div class="song" data-win-bind="textContent: song"></div>
+                    <div class="albumName" data-win-bind="textContent: album"></div>
+                    <div class="length" data-win-bind="textContent: length"></div>
+                </div>
+            </div>
+        </div>
+        <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums', isHeaderStatic: true}">
+            <div id="listView" data-win-control="WinJS.UI.ListView" data-win-options="{itemTemplate: select('.albumTemplate'), itemDataSource: Sample.albums.dataSource, layout: {type: WinJS.UI.GridLayout, orientation: 'vertical'}}"></div>
+        </div>
+        <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Reviews', isHeaderStatic: true}">
+            <div class="reviews">
+                <div class="average">
+                    <div data-win-control="WinJS.UI.Rating" data-win-options="{averageRating: 4.5, disabled: true}"></div> <span class="totalRatings">683</span>
+                    <div>4.5 out of 5 stars</div>
+                </div>
+                <div class="breakdown">
+                    <div class="star">
+                        <div class="numStars">5 stars</div>
+                        <progress class="win-progress-bar" value="72" max="100"></progress>
+                        <div class="percent">72%</div>
+                    </div>
+                    <div class="star">
+                        <div class="numStars">4 stars</div>
+                        <progress class="win-progress-bar" value="13" max="100"></progress>
+                        <div class="percent">13%</div>
+                    </div>
+                    <div class="star">
+                        <div class="numStars">3 stars</div>
+                        <progress class="win-progress-bar" value="6" max="100"></progress>
+                        <div class="percent">6%</div>
+                    </div>
+                    <div class="star">
+                        <div class="numStars">2 stars</div>
+                        <progress class="win-progress-bar" value="4" max="100"></progress>
+                        <div class="percent">4%</div>
+                    </div>
+                    <div class="star">
+                        <div class="numStars">1 star</div>
+                        <progress class="win-progress-bar" value="5" max="100"></progress>
+                        <div class="percent">5%</div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <h5 class="win-h5">Write a review</h5>
+                    <div data-win-control="WinJS.UI.Rating" data-win-options="{userRating: 4}"></div>
+                    <div><textarea class="win-textarea" placeholder="Enter your comments here..."></textarea></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="albumTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="album">
+            <div class="image">&#xE142;</div>
+            <div class="title" data-win-bind="textContent: title"></div>
+        </div>
+    </div>
+</body>
+</html>
