@@ -40,7 +40,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
             ])
         });
 
-        WinJS.UI.Pages.define('/pages/sezo/sezo.html', {
+        WinJS.UI.Pages.define('pages/sezo/sezo.html', {
             // This function is called whenever a user navigates to this page.
             ready: function (element, options) {
                 this._hub = element.querySelector('#hub').winControl;
@@ -64,7 +64,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
                 WinJS.Navigation.state = WinJS.Navigation.state || {};
                 WinJS.Navigation.state.oldScrollPosition = hub.scrollPosition;
 
-                WinJS.Navigation.navigate('/pages/newpage/newpage.html', { section: hub.sections.getAt(index).header });
+                WinJS.Navigation.navigate('pages/newpage/newpage.html', { section: hub.sections.getAt(index).header });
             },
             
             // Respond to navigations away from this page
