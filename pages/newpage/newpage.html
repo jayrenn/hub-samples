@@ -12,16 +12,16 @@ Copyright (c) Microsoft Corporation. All rights reserved
             ready: function (element, options) {
                 var nav = WinJS.Navigation;
                 if (nav.state.section) {
-                    document.getElementById('section').textContent = nav.state.section;
+                    element.querySelector('.section').textContent = nav.state.section;
                 }
             }
         });
     </script>
 </head>
 <body class="win-type-body">
-    <div id="goBack">
+    <div>
         <button data-win-control="WinJS.UI.BackButton"></button>
     </div>
-    <p>You navigated to a new page by interacting with the <strong id="section">[Unknown]</strong> section.</p>
+    <p>You navigated to a new page by interacting with the <strong class="section">[Unknown]</strong> section.</p>
 </body>
 </html>

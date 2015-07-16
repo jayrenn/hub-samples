@@ -38,7 +38,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
         WinJS.UI.Pages.define('pages/interactiveheaders/interactiveheaders.html', {
             // This function is called whenever a user navigates to this page.
             ready: function (element, options) {
-                this._hub = element.querySelector('#hub').winControl;
+                this._hub = element.querySelector('.hub').winControl;
                 this._onHeaderInvokedBound = this.onHeaderInvoked.bind(this);
                 window.addEventListener('headerinvoked', this._onHeaderInvokedBound);
 
@@ -69,15 +69,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
         });
     </script>
     <style type="text/css">
-        body {
-            min-width: 320px;
-        }
-
-        #hub {
-            height: calc(100% - 20px);
-        }
-
-        #hub .win-hub-surface {
+        .hub .win-hub-surface {
             padding: 12px;
         }
 
@@ -120,10 +112,10 @@ Copyright (c) Microsoft Corporation. All rights reserved
         }
 
         .songRow.headerRow {
-            font-family: 'Segoe UI Light';
+            font-family: 'Segoe UI Light', Helvetica, Arial;
         }
 
-        #listView {
+        .listView {
             min-width: 300px;
             width: 500px;
         }
@@ -187,7 +179,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
     </style>
 </head>
 <body class="win-type-body">
-    <div id="hub" data-win-control="WinJS.UI.Hub" data-win-options="{orientation: 'horizontal'}">
+    <div class="hub" data-win-control="WinJS.UI.Hub" data-win-options="{orientation: 'horizontal'}">
         <div class="songs" data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Songs'}">
             <div class="songRow headerRow">
                 <div class="play"></div>
@@ -205,7 +197,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
             </div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums'}">
-            <div id="listView"
+            <div class="listView"
                 data-win-control="WinJS.UI.ListView"
                 data-win-options="{
                     itemTemplate: select('.albumTemplate'),

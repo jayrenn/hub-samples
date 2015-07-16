@@ -40,16 +40,16 @@ Copyright (c) Microsoft Corporation. All rights reserved
 
         function init() {
             WinJS.UI.processAll().then(function() {
-                var toggle = document.querySelector('#toggleOrientationButton');
+                var toggle = document.querySelector('.toggleOrientationButton');
                 toggle.addEventListener('click', function () {
                     // Toggle orientation
-                    var hub = document.querySelector('#hub');
+                    var hub = document.querySelector('.hub');
                     WinJS.Utilities.removeClass(hub, hub.winControl.orientation);
                     hub.winControl.orientation = (hub.winControl.orientation == 'vertical') ? 'horizontal' : 'vertical';
                     WinJS.Utilities.addClass(hub, hub.winControl.orientation);
 
                     // Force re-layout of ListView for new viewport size
-                    var listView = document.querySelector('#listView');
+                    var listView = document.querySelector('.listView');
                     listView.winControl.forceLayout();
                 });
             });
@@ -58,12 +58,12 @@ Copyright (c) Microsoft Corporation. All rights reserved
         WinJS.Utilities.ready(init);
     </script>
     <style type="text/css">
-        #hub {
+        .hub {
             min-width: 320px;
             height: calc(100% - 32px);
         }
 
-        #hub .win-hub-surface {
+        .hub .win-hub-surface {
             padding: 12px;
         }
 
@@ -106,26 +106,29 @@ Copyright (c) Microsoft Corporation. All rights reserved
         }
 
         .songRow.headerRow {
-            font-family: 'Segoe UI Light';
+            font-family: 'Segoe UI Light', Helvetica, Arial;
         }
 
-        #listView {
+        .repeater {
             min-width: 300px;
         }
 
-        #hub.horizontal #listView {
+        .hub.horizontal .repeater {
             width: 500px;
         }
 
-        #hub.vertical #listView {
+        .hub.vertical .repeater {
             height: auto;
         }
 
         .album {
+            margin: 5px;
             padding: 5px;
             width: 100px;
             height: 100px;
             text-align: center;
+            display: inline-block;
+            background-color: #1d1d1d;
         }
 
         .album .image {
@@ -180,8 +183,8 @@ Copyright (c) Microsoft Corporation. All rights reserved
     </style>
 </head>
 <body class="win-type-body">
-    <button class="win-button" id="toggleOrientationButton">Toggle orientation</button>
-    <div id="hub" class="vertical" data-win-control="WinJS.UI.Hub" data-win-options="{orientation: 'vertical'}">
+    <button class="win-button toggleOrientationButton">Toggle orientation</button>
+    <div class="hub vertical" data-win-control="WinJS.UI.Hub" data-win-options="{orientation: 'vertical'}">
         <div class="songs" data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Songs', isHeaderStatic: true}">
             <div class="songRow headerRow">
                 <div class="play"></div>
@@ -199,15 +202,11 @@ Copyright (c) Microsoft Corporation. All rights reserved
             </div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums', isHeaderStatic: true}">
-            <div id="listView"
-                data-win-control="WinJS.UI.ListView"
+            <div class="repeater"
+                data-win-control="WinJS.UI.Repeater"
                 data-win-options="{
-                    itemTemplate: select('.albumTemplate'),
-                    itemDataSource: Sample.albums.dataSource,
-                    layout: {
-                        type: WinJS.UI.GridLayout,
-                        orientation: 'vertical'
-                    }
+                    template: select('.albumTemplate'),
+                    data: Sample.albums
                 }"></div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Reviews', isHeaderStatic: true}">
