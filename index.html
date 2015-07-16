@@ -199,7 +199,16 @@ Copyright (c) Microsoft Corporation. All rights reserved
             </div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums', isHeaderStatic: true}">
-            <div id="listView" data-win-control="WinJS.UI.ListView" data-win-options="{itemTemplate: select('.albumTemplate'), itemDataSource: Sample.albums.dataSource, layout: {type: WinJS.UI.GridLayout, orientation: 'vertical'}}"></div>
+            <div id="listView"
+                data-win-control="WinJS.UI.ListView"
+                data-win-options="{
+                    itemTemplate: select('.albumTemplate'),
+                    itemDataSource: Sample.albums.dataSource,
+                    layout: {
+                        type: WinJS.UI.GridLayout,
+                        orientation: 'vertical'
+                    }
+                }"></div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Reviews', isHeaderStatic: true}">
             <div class="reviews">

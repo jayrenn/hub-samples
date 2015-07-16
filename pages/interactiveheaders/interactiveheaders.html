@@ -35,7 +35,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
             ])
         });
 
-        WinJS.UI.Pages.define('/pages/headers/headers.html', {
+        WinJS.UI.Pages.define('pages/interactiveheaders/interactiveheaders.html', {
             // This function is called whenever a user navigates to this page.
             ready: function (element, options) {
                 this._hub = element.querySelector('#hub').winControl;
@@ -59,7 +59,7 @@ Copyright (c) Microsoft Corporation. All rights reserved
                 WinJS.Navigation.state = WinJS.Navigation.state || {};
                 WinJS.Navigation.state.oldScrollPosition = hub.scrollPosition;
 
-                WinJS.Navigation.navigate('/pages/newpage/newpage.html', { section: hub.sections.getAt(index).header });
+                WinJS.Navigation.navigate('pages/newpage/newpage.html', { section: hub.sections.getAt(index).header });
             },
 
             // Respond to navigations away from this page
@@ -205,7 +205,16 @@ Copyright (c) Microsoft Corporation. All rights reserved
             </div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums'}">
-            <div id="listView" data-win-control="WinJS.UI.ListView" data-win-options="{itemTemplate: select('.albumTemplate'), itemDataSource: Sample.albums.dataSource, layout: {type: WinJS.UI.GridLayout, orientation: 'vertical'}}"></div>
+            <div id="listView"
+                data-win-control="WinJS.UI.ListView"
+                data-win-options="{
+                    itemTemplate: select('.albumTemplate'),
+                    itemDataSource: Sample.albums.dataSource,
+                    layout: {
+                        type: WinJS.UI.GridLayout,
+                        orientation: 'vertical'
+                    }
+                }"></div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Reviews'}">
             <div class="reviews">
