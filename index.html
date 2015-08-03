@@ -7,9 +7,9 @@ Copyright (c) Microsoft Corporation. All rights reserved
 <head>
     <title>WinJS Hub sample - Orientations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/css/ui-dark.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/base.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/js/ui.js"></script>
     <script>
         WinJS.Namespace.define('Sample', {
             songs: new WinJS.Binding.List([
@@ -47,10 +47,6 @@ Copyright (c) Microsoft Corporation. All rights reserved
                     WinJS.Utilities.removeClass(hub, hub.winControl.orientation);
                     hub.winControl.orientation = (hub.winControl.orientation == 'vertical') ? 'horizontal' : 'vertical';
                     WinJS.Utilities.addClass(hub, hub.winControl.orientation);
-
-                    // Force re-layout of ListView for new viewport size
-                    var listView = document.querySelector('.listView');
-                    listView.winControl.forceLayout();
                 });
             });
         }

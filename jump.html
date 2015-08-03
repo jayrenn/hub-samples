@@ -7,9 +7,9 @@ Copyright (c) Microsoft Corporation. All rights reserved
 <head>
     <title>WinJS Hub sample - Navigate within the Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/css/ui-dark.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/base.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.0.1/js/ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/winjs/4.1.0/js/ui.js"></script>
     <script>
         WinJS.Namespace.define('Sample', {
             songs: new WinJS.Binding.List([
@@ -112,16 +112,18 @@ Copyright (c) Microsoft Corporation. All rights reserved
             font-family: 'Segoe UI Light', Helvetica, Arial;
         }
 
-        .listView {
+        .repeater {
             min-width: 300px;
-            height: auto;
         }
 
         .album {
+            margin: 5px;
             padding: 5px;
             width: 100px;
             height: 100px;
             text-align: center;
+            display: inline-block;
+            background-color: #1d1d1d;
         }
 
         .album .image {
@@ -205,15 +207,11 @@ Copyright (c) Microsoft Corporation. All rights reserved
             </div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Albums', isHeaderStatic: true}">
-            <div class="listView"
-                data-win-control="WinJS.UI.ListView"
+            <div class="repeater"
+                data-win-control="WinJS.UI.Repeater"
                 data-win-options="{
-                    itemTemplate: select('.albumTemplate'),
-                    itemDataSource: Sample.albums.dataSource,
-                    layout: {
-                        type: WinJS.UI.GridLayout,
-                        orientation: 'vertical'
-                    }
+                    template: select('.albumTemplate'),
+                    data: Sample.albums
                 }"></div>
         </div>
         <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Reviews', isHeaderStatic: true}">
